@@ -1,0 +1,224 @@
+* {
+  text-align: center;
+  z-index: 0;
+  padding: 0;
+  margin: 0;
+}
+
+#wrapper {
+  margin: auto;
+  width: 700px;
+  text-align: center;
+}
+@media screen and (max-width:700px),
+       screen and (max-device-width:480px),
+       screen and (-webkit-min-device-pixel-ratio: 1.5),
+       screen and (min-device-pixel-ratio: 1.5) {
+  #wrapper {
+     width: 100%;
+  }
+}/*/mediaquery*/
+
+#upper
+{
+  position: relative;
+  width: 100%;
+  height: 24em;
+}
+@media screen and (max-width:700px),
+       screen and (max-device-width:480px),
+       screen and (-webkit-min-device-pixel-ratio: 1.5),
+       screen and (min-device-pixel-ratio: 1.5) {
+  #upper {
+     height: 10em;
+  }
+}/*/mediaquery*/
+   #upper #menu
+   {
+     position: absolute;
+     text-align: center;
+     left: 30px;
+     right: 30px;
+     top: 60px;
+     padding: 20px;
+     max-height: 300px;
+     overflow-y: auto;
+     font: 1em "Tahoma", Helvetica, sans-serif;
+     background: white; /*#2E9AFE;*/
+     border: 1px solid black;
+     opacity: 0;
+   }
+   @media screen and (max-width:700px),
+          screen and (max-device-width:480px),
+          screen and (-webkit-min-device-pixel-ratio: 1.5),
+          screen and (min-device-pixel-ratio: 1.5) {
+     #upper #menu {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        max-height: 9em;
+        padding: 5px; 
+     }
+   }/*/mediaquery*/
+
+#lower
+{
+  position: relative;
+  width: 100%;
+}
+#finalswrapper
+{
+  position: relative;
+  padding: 0.5em 0;
+  width: 100%;
+}
+#finals
+{
+  font: 1em "Tahoma", Helvetica, sans-serif;
+  color: #0431B4;
+  font-weight: bold;
+}
+#footwrapper
+{
+  position: relative;
+  width: 100%;
+}
+#foot
+{
+  width: 80%;
+  font: 0.7em "Tahoma", Helvetica, sans-serif;
+  margin: auto;
+}
+
+#closer
+{
+  position: absolute;
+  bottom: 0.5em;
+  right: 0.5em;
+  cursor: pointer;
+  font-weight: bold;
+}
+@media screen and (max-width:700px),
+       screen and (max-device-width:480px),
+       screen and (-webkit-min-device-pixel-ratio: 1.5),
+       screen and (min-device-pixel-ratio: 1.5) {
+  #closer {
+     display: none;
+  }
+}/*/mediaquery*/
+
+li
+{
+  font-weight: normal;
+  text-align: left;
+  margin-left: 6em;
+  margin-right: 6em;
+}
+@media screen and (max-width:700px),
+       screen and (max-device-width:480px),
+       screen and (-webkit-min-device-pixel-ratio: 1.5),
+       screen and (min-device-pixel-ratio: 1.5) {
+  li {
+     margin-left: 1.5em;
+     margin-right: 1.5em;
+  }
+}/*/mediaquery*/
+.b
+{
+  font-weight: bold;
+}
+
+#num_swipes
+{
+  font: 20em "Tahoma", Helvetica, sans-serif;
+}
+@media screen and (max-width:700px),
+       screen and (max-device-width:480px),
+       screen and (-webkit-min-device-pixel-ratio: 1.5),
+       screen and (min-device-pixel-ratio: 1.5) {
+  #num_swipes {
+     font: 8em "Tahoma", Helvetica, sans-serif;
+  }
+}/*/mediaquery*/
+
+.bottom_button {
+  min-width: 80px;
+  vertical-align: text-bottom;
+  padding: 8px;
+  margin: 0px 12px 0px 12px;
+  display: inline-block;
+  font: 1.2em "Tahoma", Helvetica, sans-serif;
+  text-align: center;
+  background: black;
+  color: white;
+  cursor: pointer;
+  border: 2px solid black;
+}
+@media screen and (max-width:700px),
+       screen and (max-device-width:480px),
+       screen and (-webkit-min-device-pixel-ratio: 1.5),
+       screen and (min-device-pixel-ratio: 1.5) {
+  .bottom_button {
+     height: 30px;
+     font: 30px "Tahoma", Helvetica, sans-serif;
+     line-height: 30px;
+     display: block;
+     margin: 10px 10px 10px 10px;
+  }
+}/*/mediaquery*/
+
+.selected
+{
+  color: black;
+  background: white;
+  font-weight: bold;
+}
+
+
+#bottom_bar
+{
+  padding: 2px 0px 2px 0px;
+  margin: 0px;
+  background: #0080FF;
+  width: 100%;
+  cursor: pointer;
+}
+
+#plan_choice
+{
+  height: 80px;
+  width: 140px;
+  font-size: 60px;
+  display: inline-block;
+  outline: 2px solid black;
+  margin: 5px;
+  background: #0080FF;
+  cursor: pointer;
+}
+
+#support_link
+{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.over_everything
+{
+  padding: 1% 8%;
+  position: fixed;
+  height: 98%;
+  width: 84%;
+  z-index: 5;
+  background: white;
+  font: 5em "Tahoma", Helvetica, sans-serif;
+}
+   .over_everything .subtext
+   {
+      font-size: 20px;
+   }
+
+
+
+.red { color: red; }
+.green { color: green; }
+
