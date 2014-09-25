@@ -9,9 +9,11 @@ var days_of_week =
      "Friday",
      "Saturday",
      "Sunday"];
-
-var week_names =
-    ["0",
+function get_week_name(/*int*/ week_num)
+{
+  var week_names = 
+    ["super sub-zero",
+     "0",
      "1st",
      "2nd",
      "3rd",
@@ -23,6 +25,8 @@ var week_names =
      "9th",
      "10th",
      "Finals"];
+  return week_names[week_num+1]; /* since we're indexed on -1 */
+}
 
 var plans = 
 {
@@ -219,11 +223,6 @@ function calcSwipes()
     }
 
     var week = findWeek(now, quarter);
-    if (week < 0)
-    {
-        console.log("Pre-zero week");
-        return;
-    }
 
     var timeOfDay = findTimeOfDay(day, now, plan);
 
@@ -240,7 +239,7 @@ function calcSwipes()
     }
     $("#time_of_day").html(timeOfDay.premsg);
     $("#day_of_week").html(days_of_week[day]);
-    $("#week_ordinal").html(week_names[findWeek(now,quarter)]);
+    $("#week_ordinal").html(get_week_name(findWeek(now,quarter)));
     $("#after_what").html(timeOfDay.postmsg);
     $("#per_weekday").html(plan.perWeekday);
     $("#per_weekend").html(plan.perWeekend);
