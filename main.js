@@ -144,6 +144,9 @@ var quarters =
         new Quarter("13F", "December 13, 2013"),
         new Quarter("14W", "March 21, 2014"),
         new Quarter("14S", "June 13, 2014"),
+        new Quarter("14F", "December 19, 2014"),
+        new Quarter("15W", "March 20, 2015"),
+        new Quarter("15S", "June 12, 2015"),
     ];
 
 function Quarter(code, fridayOfFinals)
