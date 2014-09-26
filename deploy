@@ -9,7 +9,7 @@ fi
 CURRENT_BRANCH=`git symbolic-ref --short HEAD`
 
 git checkout $1 || exit 1
-git merge $CURRENT_BRANCH || exit 1
+git merge $CURRENT_BRANCH -m "Merging from $CURRENT_BRANCH" || exit 1
 git push origin $1 || exit 1
 echo "Merged $CURRENT_BRANCH into $1 and pushed to remote"
 git checkout $CURRENT_BRANCH || exit 1
