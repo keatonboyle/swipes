@@ -12,3 +12,8 @@
     # this checks out live, merges master into it, and pushes 
     #  live to origin, updating the www page
     ./deploy live
+
+= Updates =
+2015-10-04 
+Push-to-deploy failed (due to SSH cert problems?) 
+Manually uploaded copies of index.html and main.js
