@@ -139,18 +139,15 @@ var times_of_day =
 
 
 // Quarters must be arranged in *ascending* order (earliest to latest)
+// These dates are the Fridays of finals week for their respective quarters.
 var quarters =
     [
-        new Quarter("11W", "December 7, 2012"),
-        new Quarter("12F", "December 14, 2012"),
-        new Quarter("13W", "March 22, 2013"),
-        new Quarter("13S", "June 14, 2013"),
-        new Quarter("13F", "December 13, 2013"),
-        new Quarter("14W", "March 21, 2014"),
-        new Quarter("14S", "June 13, 2014"),
-        new Quarter("14F", "December 19, 2014"),
-        new Quarter("15W", "March 20, 2015"),
         new Quarter("15S", "June 12, 2015"),
+        new Quarter("15F", "December 11, 2015"),
+        new Quarter("16W", "March 18, 2016"),
+        new Quarter("16S", "June 10, 2016"),
+        new Quarter("16F", "December 9, 2016"),
+        new Quarter("17S", "March 24, 2017"),
     ];
 
 function Quarter(code, fridayOfFinals)
@@ -313,18 +310,31 @@ function init()
 
 
 
-    $("#detail_button").click(detAnim);
-    $("#closer").click(detAnim);
+    $("#detail_button").click(function () {
+      detAnim();
+    });
+    $("#closer").click(function() {
+      detAnim();
+    });
     $("#support_link").click(
         function () { window.open("mailto:keatonboyle@gmail.com"); });
 
-    $("#choose_19P").click(function () { select_plan(this, "19P"); });
-    $("#choose_14P").click(function () { select_plan(this, "14P"); });
-    $("#choose_19").click(function () { select_plan(this, "19"); });
-    $("#choose_14").click(function () { select_plan(this, "14"); });
-
-
-
+    $("#choose_19P").click(function () { 
+      select_plan(this, "19P");
+      detAnim(true);
+    });
+    $("#choose_14P").click(function () { 
+      select_plan(this, "14P");
+      detAnim(true);
+    });
+    $("#choose_19").click(function () { 
+      select_plan(this, "19");
+      detAnim(true);
+    });
+    $("#choose_14").click(function () { 
+      select_plan(this, "14");
+      detAnim(true);
+    });
 }
 
 
@@ -433,16 +443,18 @@ function findTimeOfDay(day, now, plan)
 }
 
 var b_menuOpen = false;
-function detAnim()
+function detAnim(opt_b_closeOnly)
 {
-  if (b_menuOpen)
+  var closeOnly = opt_b_closeOnly || false;
+
+  if (b_menuOpen || closeOnly)
   {
     b_menuOpen = false;
     $("#menu").css(
         { opacity: "0" }
     );
   }
-  else
+  else if (!closeOnly)
   {
     b_menuOpen = true;
     $("#menu").css(
