@@ -17,3 +17,8 @@
 2015-10-04 
 Push-to-deploy failed (due to SSH cert problems?) 
 Manually uploaded copies of index.html and main.js
+
+2016-05-17
+Assuming that push-to-deploy still broken
+Forgot dev password
+Manually uploaded copies of index.html and style.css
