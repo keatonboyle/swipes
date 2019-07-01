@@ -142,12 +142,12 @@ var times_of_day =
 // These dates are the Fridays of finals week for their respective quarters.
 var quarters =
     [
-        new Quarter("15S", "June 12, 2015"),
-        new Quarter("15F", "December 11, 2015"),
-        new Quarter("16W", "March 18, 2016"),
-        new Quarter("16S", "June 10, 2016"),
-        new Quarter("16F", "December 9, 2016"),
-        new Quarter("17S", "March 24, 2017"),
+        new Quarter("17F", "December 15, 2017"),
+        new Quarter("18W", "March 23, 2018"),
+        new Quarter("18S", "June 15, 2018"),
+        new Quarter("18F", "December 14, 2018"),
+        new Quarter("19W", "March 22, 2019"),
+        new Quarter("19S", "June 14, 2019"),
     ];
 
 function Quarter(code, fridayOfFinals)
@@ -293,7 +293,7 @@ function init()
                              .html("IT'S SUMMERTIME MOTHERFUCKERS." +
                                    "<br><br><br><br><br><br>"));
       $("#master").remove();
-      setTimeout(function () {window.location.href = "http://www.youtube.com/watch?v=Kr0tTbTbmVA";},750);
+      setTimeout(function () {window.location.href = "https://www.youtube.com/watch?v=Kr0tTbTbmVA";},750);
     }
    */
         
