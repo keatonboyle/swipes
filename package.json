@@ -1,0 +1,20 @@
+{
+  "name": "swipes",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "https://github.com/keatonboyle/swipes.git",
+  "author": "Keaton Boyle <keatonboyle@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "js-cookie": "^2.2.0"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.3",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5"
+  },
+  "scripts": {
+    "build": "webpack"
+  }
+}

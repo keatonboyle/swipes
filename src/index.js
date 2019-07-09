@@ -1,3 +1,6 @@
+const $ = require('jquery');
+const Cookies = require('js-cookie');
+
 /* CONSTANTS ******************************************************************/
 var millis_in_day = 1000 * 60 * 60 * 24;
 
@@ -298,7 +301,7 @@ function init()
    */
         
 
-    var foundPlanString = $.cookies.get("plan");
+    var foundPlanString = Cookies.get("plan");
     if(foundPlanString != null)
     {
       select_plan($("#choose_"+foundPlanString).get(), foundPlanString);
@@ -469,8 +472,10 @@ function select_plan(el, planString)
   plan = plans[planString];
   $(el).addClass("selected");
 
-  $.cookies.set("plan",planString);
+  Cookies.set("plan",planString);
 
   calcSwipes();
 }
+
+$(document).ready(init);
 

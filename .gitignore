@@ -1,2 +1,4 @@
 *.swp
 .firebase
+node_modules
+dist
