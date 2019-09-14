@@ -145,12 +145,9 @@ var times_of_day =
 // These dates are the Fridays of finals week for their respective quarters.
 var quarters =
     [
-        new Quarter("17F", "December 15, 2017"),
-        new Quarter("18W", "March 23, 2018"),
-        new Quarter("18S", "June 15, 2018"),
-        new Quarter("18F", "December 14, 2018"),
-        new Quarter("19W", "March 22, 2019"),
-        new Quarter("19S", "June 14, 2019"),
+        new Quarter("19F", "December 13, 2019"),
+        new Quarter("20W", "March 20, 2020"),
+        new Quarter("20S", "June 12, 2020"),
     ];
 
 function Quarter(code, fridayOfFinals)
