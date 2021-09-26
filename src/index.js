@@ -145,9 +145,9 @@ var times_of_day =
 // These dates are the Fridays of finals week for their respective quarters.
 var quarters =
     [
-        new Quarter("20F", "December 18, 2020"),
-        new Quarter("21W", "March 19, 2021"),
-        new Quarter("21S", "June 11, 2021"),
+        new Quarter("21F", "December 10, 2021"),
+        new Quarter("22W", "March 18, 2022"),
+        new Quarter("22S", "June 10, 2021"),
     ];
 
 function Quarter(code, fridayOfFinals)
