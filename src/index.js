@@ -474,5 +474,10 @@ function select_plan(el, planString)
   calcSwipes();
 }
 
+function foo() {
+  return "bar";
+}
+
 $(document).ready(init);
 
+module.exports = foo;
