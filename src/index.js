@@ -2,9 +2,9 @@ const $ = require('jquery');
 const Cookies = require('js-cookie');
 
 /* CONSTANTS ******************************************************************/
-var millis_in_day = 1000 * 60 * 60 * 24;
+const MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
 
-var days_of_week = 
+const DAY_NAMES = 
     ["Monday",
      "Tuesday",
      "Wednesday",
@@ -12,9 +12,8 @@ var days_of_week =
      "Friday",
      "Saturday",
      "Sunday"];
-function get_week_name(/*int*/ week_num)
-{
-  var week_names = 
+
+const _WEEK_NAMES = 
     ["super sub-zero",
      "0",
      "1st",
@@ -28,10 +27,13 @@ function get_week_name(/*int*/ week_num)
      "9th",
      "10th",
      "Finals"];
-  return week_names[week_num+1]; /* since we're indexed on -1 */
+
+function get_week_name(/*int*/ week_num)
+{
+  return _WEEK_NAMES[week_num+1]; /* since we're indexed on -1 */
 }
 
-var plans = 
+const PLANS = 
 {
     "19P": 
     {
@@ -71,7 +73,7 @@ var plans =
     }
 };
 
-var times_of_day =
+const TIMES_OF_DAY =
 {
     "early_morning":
     {
@@ -143,7 +145,7 @@ var times_of_day =
 
 // Quarters must be arranged in *ascending* order (earliest to latest)
 // These dates are the Fridays of finals week for their respective quarters.
-var quarters =
+const QUARTERS =
     [
         new Quarter("21F", "December 10, 2021"),
         new Quarter("22W", "March 18, 2022"),
@@ -167,7 +169,7 @@ function calcEnd(fridayOfFinals)
   console.log(ret);
   ret += ((tutcOffset - futcOffset)*1000*60)
   console.log(ret);
-  ret += 3*millis_in_day;
+  ret += 3*MILLIS_IN_DAY;
   console.log(ret);
 
   console.log(new Date(ret));
@@ -178,7 +180,7 @@ function calcEnd(fridayOfFinals)
 Quarter.prototype.end = function()
 {
     return this.endTime;
-    var endedms = (new Date(this.fridayOfFinals)).getTime() + 3 * millis_in_day;
+    var endedms = (new Date(this.fridayOfFinals)).getTime() + 3 * MILLIS_IN_DAY;
     console.log(endedms);
 //    console.log(new Date(endedms));
     var offset = (today.getTimezoneOffset() 
@@ -235,7 +237,7 @@ function calcSwipes()
       $("#inner_num_swipes_label").html("swipes");
     }
     $("#time_of_day").html(timeOfDay.premsg);
-    $("#day_of_week").html(days_of_week[day]);
+    $("#day_of_week").html(DAY_NAMES[day]);
     $("#week_ordinal").html(get_week_name(findWeek(now,quarter)));
     $("#after_what").html(timeOfDay.postmsg);
     $("#per_weekday").html(plan.perWeekday);
@@ -340,11 +342,11 @@ function init()
 
 function findQuarter(now)
 {
-    for (var ii = 0; ii < quarters.length; ii++)
+    for (var ii = 0; ii < QUARTERS.length; ii++)
     {
-        if (now < quarters[ii].end())
+        if (now < QUARTERS[ii].end())
         {
-            return quarters[ii];
+            return QUARTERS[ii];
         }
     }
     return null;
@@ -357,7 +359,7 @@ function findWeek(now, quarter)
 //    console.log((11 - parseInt((diff-1) / (millis_in_day * 7))));
 //    console.log(((diff-1) / (millis_in_day * 7)));
 
-    return (11 - parseInt((diff - 1) / (millis_in_day * 7)));
+    return (11 - parseInt((diff - 1) / (MILLIS_IN_DAY * 7)));
 }
 
 function findSwipes(day, week, plan, timeOfDay)
@@ -408,38 +410,38 @@ function findTimeOfDay(day, now, plan)
 
     if (hour < 7)
     {
-        return times_of_day["early_morning"];
+        return TIMES_OF_DAY["early_morning"];
     }
     if (hour < 11)
     {
         if ((day < 5) && (plan.perWeekday == 3))
         {
-            return times_of_day["breakfast"];
+            return TIMES_OF_DAY["breakfast"];
         }
         if (day >= 5)
         {
-            return times_of_day["weekend_brunch"];
+            return TIMES_OF_DAY["weekend_brunch"];
         }
-        return times_of_day["general_morning"];
+        return TIMES_OF_DAY["general_morning"];
     }
     if (hour < 15)
     {
         if (day >= 5)
         {
-            return times_of_day["weekend_brunch"];
+            return TIMES_OF_DAY["weekend_brunch"];
         }
-        return times_of_day["lunch"];
+        return TIMES_OF_DAY["lunch"];
     }
     if (hour < 17)
     {
-        return times_of_day["late_afternoon"];
+        return TIMES_OF_DAY["late_afternoon"];
     }
     if (hour < 21)
     {
-        return times_of_day["dinner"];
+        return TIMES_OF_DAY["dinner"];
     }
 
-    return times_of_day["late_night"];
+    return TIMES_OF_DAY["late_night"];
 }
 
 var b_menuOpen = false;
@@ -466,7 +468,7 @@ function detAnim(opt_b_closeOnly)
 function select_plan(el, planString)
 {
   $(".plan_choice").removeClass("selected");
-  plan = plans[planString];
+  plan = PLANS[planString];
   $(el).addClass("selected");
 
   Cookies.set("plan",planString);
