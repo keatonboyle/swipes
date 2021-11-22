@@ -1,3 +1,7 @@
+WARNING: Most of this code is very old and of tragically poor quality. 
+Refactoring may happen evenutally.
+
+
 # Buiding and deploying
 
 ```sh
