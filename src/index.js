@@ -164,6 +164,9 @@ function calcEnd(fridayOfFinals)
   var friday = new Date(fridayOfFinals);
   console.log(friday);
   var futcOffset = friday.getTimezoneOffset();
+  
+  // TODO: this new Date() does not respect a time set in the URL hash.
+  // Refactor.
   var tutcOffset = (new Date()).getTimezoneOffset();
   var ret = friday.getTime();
   console.log(ret);
@@ -177,6 +180,7 @@ function calcEnd(fridayOfFinals)
 }
 
 
+// TODO: refactor.
 Quarter.prototype.end = function()
 {
     return this.endTime;
@@ -206,14 +210,11 @@ Quarter.prototype.term = function ()
 };
 
 var plan;
-var today;
 
-function calcSwipes()
+function calcSwipes(date)
 {
-    var now = today;
-
-    var day = (now.getDay() + 6) % 7; /* to use the Monday=0 perspective */
-    var quarter = findQuarter(now);
+    var day = (date.getDay() + 6) % 7; /* to use the Monday=0 perspective */
+    var quarter = findQuarter(date);
 
     if (quarter == null)
     {
@@ -221,9 +222,9 @@ function calcSwipes()
         return;
     }
 
-    var week = findWeek(now, quarter);
+    var week = findWeek(date, quarter);
 
-    var timeOfDay = findTimeOfDay(day, now, plan);
+    var timeOfDay = findTimeOfDay(day, date, plan);
 
     var swipes = findSwipes(day, week, plan, timeOfDay);
     $("#num_swipes").html(swipes);
@@ -238,7 +239,7 @@ function calcSwipes()
     }
     $("#time_of_day").html(timeOfDay.premsg);
     $("#day_of_week").html(DAY_NAMES[day]);
-    $("#week_ordinal").html(get_week_name(findWeek(now,quarter)));
+    $("#week_ordinal").html(get_week_name(findWeek(date,quarter)));
     $("#after_what").html(timeOfDay.postmsg);
     $("#per_weekday").html(plan.perWeekday);
     $("#per_weekend").html(plan.perWeekend);
@@ -255,18 +256,18 @@ function calcSwipes()
 
 function init()
 {
-    today = new Date();
+    let now = new Date();
 
     if (location.hash != "")
     {
       // Expect date in format MM-DD-YYYY-HH:MM
       var dateEls = location.hash.substr(1).split("-");
       var timeEls = dateEls[3].split(":");
-      today = new Date(dateEls[2],dateEls[0]-1,dateEls[1],timeEls[0],timeEls[1]);
+      now = new Date(dateEls[2],dateEls[0]-1,dateEls[1],timeEls[0],timeEls[1]);
     }
 
-    if (today > new Date("March 25, 2013") &&
-        today < new Date("April 1, 2013"))
+    if (now > new Date("March 25, 2013") &&
+        now < new Date("April 1, 2013"))
     {
       $("body").append($('<div>')
                              .addClass("over_everything")
@@ -274,8 +275,8 @@ function init()
                                    "<br><br><br><br><br><br>"));
       $("#master").remove();
     }
-    else if (today > new Date("December 14, 2013") &&
-             today < new Date("January 5, 2014"))
+    else if (now > new Date("December 14, 2013") &&
+             now < new Date("January 5, 2014"))
     {
       $("body").append($('<div>')
                              .addClass("over_everything")
@@ -303,11 +304,11 @@ function init()
     var foundPlanString = Cookies.get("plan");
     if(foundPlanString != null)
     {
-      select_plan($("#choose_"+foundPlanString).get(), foundPlanString);
+      select_plan($("#choose_"+foundPlanString).get(), foundPlanString, now);
     }
     else
     {
-      select_plan($("#choose_19P").get(), "19P");
+      select_plan($("#choose_19P").get(), "19P", now);
     }
 
 
@@ -322,29 +323,29 @@ function init()
         function () { window.open("mailto:keatonboyle@gmail.com"); });
 
     $("#choose_19P").click(function () { 
-      select_plan(this, "19P");
+      select_plan(this, "19P", now);
       detAnim(true);
     });
     $("#choose_14P").click(function () { 
-      select_plan(this, "14P");
+      select_plan(this, "14P", now);
       detAnim(true);
     });
     $("#choose_19").click(function () { 
-      select_plan(this, "19");
+      select_plan(this, "19", now);
       detAnim(true);
     });
     $("#choose_14").click(function () { 
-      select_plan(this, "14");
+      select_plan(this, "14", now);
       detAnim(true);
     });
 }
 
 
-function findQuarter(now)
+function findQuarter(date)
 {
     for (var ii = 0; ii < QUARTERS.length; ii++)
     {
-        if (now < QUARTERS[ii].end())
+        if (date < QUARTERS[ii].end())
         {
             return QUARTERS[ii];
         }
@@ -352,9 +353,9 @@ function findQuarter(now)
     return null;
 }
 
-function findWeek(now, quarter)
+function findWeek(date, quarter)
 {
-    var diff = quarter.end() - now.getTime();
+    var diff = quarter.end() - date.getTime();
             
 //    console.log((11 - parseInt((diff-1) / (millis_in_day * 7))));
 //    console.log(((diff-1) / (millis_in_day * 7)));
@@ -404,9 +405,9 @@ function findSwipes(day, week, plan, timeOfDay)
     return startOfWeek - usedThisWeek - todaySwipes;
 }
 
-function findTimeOfDay(day, now, plan)
+function findTimeOfDay(day, date, plan)
 {
-    var hour = now.getHours();
+    var hour = date.getHours();
 
     if (hour < 7)
     {
@@ -465,7 +466,7 @@ function detAnim(opt_b_closeOnly)
   }
 }
 
-function select_plan(el, planString)
+function select_plan(el, planString, date)
 {
   $(".plan_choice").removeClass("selected");
   plan = PLANS[planString];
@@ -473,7 +474,7 @@ function select_plan(el, planString)
 
   Cookies.set("plan",planString);
 
-  calcSwipes();
+  calcSwipes(date);
 }
 
 function foo() {
