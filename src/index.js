@@ -53,6 +53,15 @@ const PLANS =
         perWeekend: 2,
         roll: true
     },
+    "11P":
+    {
+        name: "11P",
+        extendedName: "11 Pre-fucking-miere",
+        perWeek: 11,
+        perWeekday: 2,
+        perWeekend: 0,
+        roll: true
+    },
     "19": 
     {
         name: "19",
@@ -70,6 +79,15 @@ const PLANS =
         perWeekday: 2,
         perWeekend: 2,
         roll: false 
+    },
+    "11":
+    {
+        name: "11",
+        extendedName: "11 Regu-fucking-lar",
+        perWeek: 11,
+        perWeekday: 2,
+        perWeekend: 0,
+        roll: false
     }
 };
 
@@ -251,6 +269,24 @@ function calcSwipes(date)
     else
       $("#rollover_text").html("DON'T");
 
+
+    // TODO: refactor
+    // 11 plans don't count individual weekend days. Show different weekend 
+    // accounting messages depending on whether we're on an 11 plan
+    if (plan.perWeekend == 0) {
+      $('#weekend_accounting').hide();
+      $('#no_weekend_accounting').show();
+
+      // Override the postmsg for weekends of 11 plans.
+      if (day == 5 || day == 6) {
+        $("#after_what")
+          .html(" if you haven't used your prized weekend swipe yet");
+      }
+    } else {
+      $('#weekend_accounting').show();
+      $('#no_weekend_accounting').hide();
+    }
+
     return swipes;
 }
 
@@ -330,12 +366,20 @@ function init()
       select_plan(this, "14P", now);
       detAnim(true);
     });
+    $("#choose_11P").click(function () { 
+      select_plan(this, "11P", now);
+      detAnim(true);
+    });
     $("#choose_19").click(function () { 
       select_plan(this, "19", now);
       detAnim(true);
     });
     $("#choose_14").click(function () { 
       select_plan(this, "14", now);
+      detAnim(true);
+    });
+    $("#choose_11").click(function () { 
+      select_plan(this, "11", now);
       detAnim(true);
     });
 }
@@ -392,6 +436,11 @@ function findSwipes(day, week, plan, timeOfDay)
     if (day >= 5) 
     {
         todaySwipes=timeOfDay.offset14;
+
+        if (plan.perWeekend == 0)
+        {
+            todaySwipes = 0;
+        }
     }
     else if (plan.perWeekday == 3) 
     {
@@ -403,6 +452,11 @@ function findSwipes(day, week, plan, timeOfDay)
     }
 
     return startOfWeek - usedThisWeek - todaySwipes;
+
+
+  // 19P 39
+  // 14P 29  10 + 14 + 4 + 1
+  // 11P     10 + 11 + 1 + 1
 }
 
 function findTimeOfDay(day, date, plan)

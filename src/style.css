@@ -129,11 +129,29 @@ li
   }
 }/*/mediaquery*/
 
+.plan_choice_narrow_wrapper {
+  min-width: 165px;
+  display: inline-block;
+  text-align: center;
+  max-width: 200px;
+  vertical-align: text-bottom;
+}
+@media screen and (max-width:700px) {
+  .plan_choice_narrow_wrapper {
+    display: block;
+    max-width: none;
+  }
+}/*/mediaquery*/
+
+.plan_choice_narrow_wrapper_flexer {
+  display: flex;
+}
+
 .bottom_button {
   min-width: 80px;
   vertical-align: text-bottom;
   padding: 8px;
-  margin: 0px 12px 0px 12px;
+  margin: 0px 10px 0px 10px;
   display: inline-block;
   font: 1.2em "Tahoma", Helvetica, sans-serif;
   text-align: center;
@@ -149,6 +167,22 @@ li
      line-height: 30px;
      display: block;
      margin: 10px 10px 10px 10px;
+  }
+}/*/mediaquery*/
+
+.bottom_button.bottom_button_narrow {
+  min-width: 0px;
+  flex: 1 1 33%;
+  margin: 0px 6px 0px 6px;
+  overflow: hidden;
+}
+/* TODO: make the horizontal margins between 19, 14, 11 match the vertical 
+ * margins
+ */
+@media screen and (max-width:700px) {
+  .bottom_button.bottom_button_narrow {
+    margin: 0px 10px 0px 10px;
+    min-width: 0px;
   }
 }/*/mediaquery*/
 
