@@ -280,7 +280,7 @@ function calcSwipes(date)
       // Override the postmsg for weekends of 11 plans.
       if (day == 5 || day == 6) {
         $("#after_what")
-          .html(" if you haven't used your prized weekend swipe yet");
+          .html(" after you've used your prized weekend swipe");
       }
     } else {
       $('#weekend_accounting').show();
@@ -439,7 +439,7 @@ function findSwipes(day, week, plan, timeOfDay)
 
         if (plan.perWeekend == 0)
         {
-            todaySwipes = 0;
+            todaySwipes = 1;
         }
     }
     else if (plan.perWeekday == 3) 
@@ -452,11 +452,6 @@ function findSwipes(day, week, plan, timeOfDay)
     }
 
     return startOfWeek - usedThisWeek - todaySwipes;
-
-
-  // 19P 39
-  // 14P 29  10 + 14 + 4 + 1
-  // 11P     10 + 11 + 1 + 1
 }
 
 function findTimeOfDay(day, date, plan)
