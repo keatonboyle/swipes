@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "fire-swipes"
-  }
+    "default": "fire-swipes",
+    "beta": "fire-swipes-beta"
+  },
+  "targets": {}
 }
