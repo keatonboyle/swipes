@@ -416,6 +416,14 @@ function findSwipes(day, week, plan, timeOfDay)
                     * plan.perWeek /* times swipes per week */
                     - (2 * plan.perWeekend); /* minus the weekend at the end
                                                 of finals */
+
+      // TODO: refactor
+      // For now, 11 plans have plan.perWeekend set to 0. This is wrong for
+      // subtracting the weekend at the end of finals. So manually adjust for
+      // those plans here.
+      if (plan.perWeekend == 0) {
+        startOfWeek -= 1;
+      }
     }
     else
     {
@@ -423,6 +431,14 @@ function findSwipes(day, week, plan, timeOfDay)
       if ((12 - week) == 1)
       {
         startOfWeek -= (plan.perWeekend * 2);
+
+        // TODO: refactor
+        // For now, 11 plans have plan.perWeekend set to 0. This is wrong for
+        // subtracting the weekend at the end of finals. So manually adjust for
+        // those plans here.
+        if (plan.perWeekend == 0) {
+          startOfWeek -= 1;
+        }
       }
     }
 
@@ -526,10 +542,10 @@ function select_plan(el, planString, date)
   calcSwipes(date);
 }
 
-function foo() {
-  return "bar";
-}
-
 $(document).ready(init);
 
-module.exports = foo;
+module.exports = {
+  PLANS,
+  TIMES_OF_DAY,
+  findSwipes,
+}
