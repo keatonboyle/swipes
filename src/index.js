@@ -165,9 +165,10 @@ const TIMES_OF_DAY =
 // These dates are the Fridays of finals week for their respective quarters.
 const QUARTERS =
     [
-        new Quarter("21F", "December 10, 2021"),
-        new Quarter("22W", "March 18, 2022"),
-        new Quarter("22S", "June 10, 2021"),
+        new Quarter("22S", "June 10, 2022"),
+        new Quarter("22F", "December 9, 2022"),
+        new Quarter("23W", "March 24, 2023"),
+        new Quarter("23S", "June 16, 2023"),
     ];
 
 function Quarter(code, fridayOfFinals)
@@ -547,5 +548,6 @@ $(document).ready(init);
 module.exports = {
   PLANS,
   TIMES_OF_DAY,
+  QUARTERS,
   findSwipes,
 }

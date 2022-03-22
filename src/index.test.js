@@ -1,6 +1,7 @@
 const {
   PLANS,
   TIMES_OF_DAY,
+  QUARTERS,
   findSwipes,
 } = require('./index');
 
@@ -110,6 +111,12 @@ test("11 is correct on Thursday of 10th week", () => {
       10, // 10th week
       PLANS["11"],
       TIMES_OF_DAY["dinner"])).toBe(3);
+});
+
+test("QUARTERS are in order", () => {
+  for (let ii = 1; ii < QUARTERS.length; ii++) {
+    expect(QUARTERS[ii].endTime).toBeGreaterThan(QUARTERS[ii-1].endTime);
+  }
 });
 
 
