@@ -7,13 +7,13 @@
   "license": "MIT",
   "dependencies": {
     "jquery": "^3.4.1",
-    "js-cookie": "^2.2.0"
+    "js-cookie": "^3.0.5"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^5.0.3",
-    "jest": "^27.2.2",
-    "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5"
+    "copy-webpack-plugin": "^11.0.0",
+    "jest": "^29.6.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   },
   "scripts": {
     "build": "webpack",
