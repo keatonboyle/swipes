@@ -165,10 +165,9 @@ const TIMES_OF_DAY =
 // These dates are the Fridays of finals week for their respective quarters.
 const QUARTERS =
     [
-        new Quarter("22S", "June 10, 2022"),
-        new Quarter("22F", "December 9, 2022"),
-        new Quarter("23W", "March 24, 2023"),
-        new Quarter("23S", "June 16, 2023"),
+        new Quarter("23F", "December 15, 2023"),
+        new Quarter("24W", "March 18, 2024"),
+        new Quarter("24S", "June 14, 2024"),
     ];
 
 function Quarter(code, fridayOfFinals)
